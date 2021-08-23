@@ -1,17 +1,30 @@
 package com.EUMESMO.Pessoas.APIRest.controller;
 
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.EUMESMO.Pessoas.APIRest.dto.MessagemResponseDTO;
+import com.EUMESMO.Pessoas.APIRest.entity.Pessoa;
+import com.EUMESMO.Pessoas.APIRest.repository.PessoaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api")
+@RequestMapping("/api")
 public class PessoaController {
 
-    @GetMapping("/Pessoa")
-    public String ListarPe(){
-        return "Olá Pessoa";
+    private final PessoaRepository pessoaRepository;
+
+    @Autowired
+    public PessoaController(PessoaRepository pessoaRepository) {
+        this.pessoaRepository = pessoaRepository;
+    }
+
+    @PostMapping("/Pessoa")
+    public MessagemResponseDTO CriarPessoa(@RequestBody Pessoa pessoa){
+       Pessoa savedPessoa = pessoaRepository.save(pessoa);
+        return MessagemResponseDTO
+                .builder()
+                .message("Creado com sucesso ID" + savedPessoa.getId())
+                .build();
     }
 
 }
