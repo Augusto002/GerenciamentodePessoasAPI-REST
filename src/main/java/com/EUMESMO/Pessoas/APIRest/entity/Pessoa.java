@@ -19,17 +19,18 @@ public class Pessoa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
-    @Column(nullable = false)
-    private String Prinome;
+    @Column(nullable = false, name = "PRINOME")
+    private String prinome;
 
-    @Column(nullable = false)
-    private String Segnome;
+    @Column(nullable = false, name = "SEGNOME")
+    private String segnome;
 
-    @Column(nullable = false, unique = true)
-    private String CPF;
+    @Column(nullable = false, unique = true, name = "CPF")
+    private String cpf;
 
+    @Column(name = "DATA_NASCIMENTO")
     private LocalDate DataNascimento;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.REMOVE})

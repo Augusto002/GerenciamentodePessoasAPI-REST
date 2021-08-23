@@ -20,9 +20,9 @@ public class Telefone {
     private long id;
 
    @Enumerated(EnumType.STRING)
-   @Column(nullable = false)
+   @Column(nullable = false, name = "TIPO_TELEFONE")
     private TipoTelefone tipoTelefone;
 
-   @Column(nullable = false)
+   @Column(nullable = false, name = "NUMERO")
     private String numero;
 }

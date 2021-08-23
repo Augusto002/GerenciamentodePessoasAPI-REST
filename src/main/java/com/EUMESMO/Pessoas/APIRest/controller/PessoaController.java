@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/pessoa")
 public class PessoaController {
 
     private final PessoaRepository pessoaRepository;
@@ -18,7 +18,7 @@ public class PessoaController {
         this.pessoaRepository = pessoaRepository;
     }
 
-    @PostMapping("/Pessoa")
+    @PostMapping()
     public MessagemResponseDTO CriarPessoa(@RequestBody Pessoa pessoa){
        Pessoa savedPessoa = pessoaRepository.save(pessoa);
         return MessagemResponseDTO
